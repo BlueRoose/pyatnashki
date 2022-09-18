@@ -1,0 +1,31 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
+
+const int SIZE = 4;						// Размер игрового поля в плашках
+const int ARRAY_SIZE = SIZE * SIZE;		// Размер массива
+const int FIELD_SIZE = 500;				// Размер игрового поля в пикселях
+const int CELL_SIZE = 120;				// Размер плашки в пикселях
+
+enum class Direction 
+{
+	Left = 0, Right = 1, Up = 2, Down = 3 
+};
+
+class game : public Drawable, public Transformable
+{
+	protected:
+		int elements[ARRAY_SIZE];
+		int empty_index;
+		bool solved;
+		Font font;
+	public:
+		game();
+		void Init();
+		bool Check();
+		void Move(Direction direction);
+	public:
+		virtual void draw(RenderTarget& target, RenderStates states) const;
+};
+
